@@ -1,0 +1,195 @@
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System;
+using UnityEngine.UI;
+
+public class UnityChanController : MonoBehaviour
+{
+    //アニメーションするためのコンポーネントを入れる
+    private Animator myAnimator;
+    //Unityちゃんを移動させるコンポーネントを入れる
+    private Rigidbody myRigidbody;
+    /*入力させる
+    private InputField inputField;*/
+    //前進するための力
+    public float forwardForce = 500.0f; //150
+    //動きを減速させる係数
+    private float coefficient = 0.95f;
+    //立ち止まる判定
+    public bool stop = false;
+    //public bool one = true;
+    //ルート選択時に表示するテキスト
+    private GameObject stateText;
+
+    // Use this for initialization
+    void Start()
+    {
+
+        //Animatorコンポーネントを取得
+        this.myAnimator = GetComponent<Animator>();
+
+        //走るアニメーションを開始
+        this.myAnimator.SetFloat("Speed", 0.5f);
+
+        //Rigidbodyコンポーネントを取得
+        this.myRigidbody = GetComponent<Rigidbody>();
+
+        //シーン中のstateTextオブジェクトを取得
+        this.stateText = GameObject.Find("ChoiceText");
+
+        /*入力させる
+        this.inputField = GameObject.Find("InputField").GetComponent<InputField>();*/
+    }
+
+    void Update()
+    {
+        //立ち止まるためにUnityちゃんの動きを減衰する
+        if (this.stop)
+        {
+            this.forwardForce *= this.coefficient;
+            this.myAnimator.speed *= this.coefficient;
+        }
+        //Unityちゃんに前方向の力を加える
+        this.myRigidbody.AddForce(this.transform.forward * this.forwardForce);
+    }
+
+    //トリガーモードで他のオブジェクトと接触した場合の処理
+    void OnTriggerEnter(Collider other)
+    {
+        //障害物に衝突した場合
+        if (other.gameObject.tag == "FirstGoalTag")
+        {
+            //stateTextに選択を求める言葉を表示
+            this.stateText.GetComponent<Text>().text = "←/→のどちらかを選択してください";
+            this.stop = true;
+            /*
+            if (one && inputField.text.Length >= 1)
+            {
+                InputLogger();
+            }
+
+            if (one)
+            {
+                this.stop = true;
+            }
+            */
+        }
+
+        //コース突入時の場合
+        if (other.gameObject.tag == "TurnRightTag" || other.gameObject.tag == "TurnLeftTag")
+        {
+            //directionのz軸の方向を向かせる
+            Vector3 direction = transform.position;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+        }
+
+        if (other.gameObject.tag == "LeftTag")
+        {
+            //directionの-x軸の方向を向かせる
+            Vector3 direction = transform.position;
+            transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+        }
+
+        if (other.gameObject.tag == "RightTag")
+        {
+            Vector3 direction = transform.position;
+            transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+        }
+
+        //アイテムや敵に接触の場合
+        if (other.gameObject.tag == "CoinTag")
+        {
+            //パーティクルを再生
+            GetComponent<ParticleSystem>().Play();
+            //接触したオブジェクトを破棄
+            Destroy(other.gameObject);
+            //お金を増やす
+        }
+
+        if (other.gameObject.tag == "PortionTag")
+        {
+            //パーティクルを再生
+            GetComponent<ParticleSystem>().Play();
+            //接触したオブジェクトを破棄
+            Destroy(other.gameObject);
+            //MPを増やす
+        }
+
+        if (other.gameObject.tag == "ZolrikTag")
+        {
+            //接触したオブジェクトを破棄
+            Destroy(other.gameObject); 
+            //Scene切り替え
+            SceneManager.LoadScene("AttackingScene");
+        }
+
+        if (other.gameObject.tag == "BukiyaTag")
+        {
+            //接触したオブジェクトを破棄
+            Destroy(other.gameObject);
+            //Scene切り替え
+        }
+        /*
+        if (other.gameObject.tag == "TurnPoint1" && inputValue == 1 || other.gameObject.tag == "TurnPoint2" && inputValue == 2 || other.gameObject.tag == "TurnPoint3" && inputValue == 3 || other.gameObject.tag == "TurnPoint4" && inputValue == 4)
+        {
+            //directionのz軸の方向を向かせる
+            Vector3 direction = transform.position;
+            transform.rotation = Quaternion.LookRotation(new Vector3
+                (0, 0, direction.z));
+        }
+        */
+    }  
+
+    void OnTriggerStay (Collider other)
+    {
+        if (other.gameObject.tag == "FirstGoalTag")
+        {
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                //directionの-X軸の方向を向かせる
+                Vector3 direction = transform.position;
+                transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+                this.stop = false;
+                this.forwardForce = 500.0f;
+                this.myAnimator.speed = 1.0f;
+                this.stateText.GetComponent<Text>().text = null;
+            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                //directionのX軸の方向を向かせる
+                Vector3 direction = transform.position;
+                transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+                this.stop = false;
+                this.forwardForce = 500.0f;
+                this.myAnimator.speed = 1.0f;
+                this.stateText.GetComponent<Text>().text = null;
+            }
+        }
+    }
+
+    /*
+     void InputLogger()
+     {
+         string inputvalue = inputField.text;
+         int inputValue = Convert.ToInt32(inputvalue);
+         if (inputValue == 1 || inputValue == 2)
+             {
+                 //directionの-X軸の方向を向かせる
+                 Vector3 direction = transform.position;
+                 transform.rotation = Quaternion.LookRotation(new Vector3
+                     (-direction.x, 0, 0));
+             this.one = false;
+             }
+         if (inputValue == 3 || inputValue == 4)
+         {
+             //directionのX軸の方向を向かせる
+             Vector3 direction = transform.position;
+             transform.rotation = Quaternion.LookRotation(new Vector3
+                 (direction.x, 0, 0));
+             this.one = false;
+         }
+         this.stop = false;
+     }
+     */
+}
