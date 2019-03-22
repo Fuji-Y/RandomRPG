@@ -9,6 +9,10 @@ public class EnemyControllerAS : MonoBehaviour
     public double eneMP;
     public int eneDEF;
     public int eneATK;
+    //時間計測用の数字
+    private float delta = 0;
+    //待ってほしい時間
+    private float span = 1;
 
     BattleManager battleManager;
     UnityChanControllerAS unityChanControllerAS;
@@ -45,6 +49,7 @@ public class EnemyControllerAS : MonoBehaviour
         {
             unityChanControllerAS.myHP -= (eneATK - unityChanControllerAS.myDEF);
             this.parameterText.GetComponent<Text>().text = "HPを" + (eneATK - unityChanControllerAS.myDEF) + "削られた！";
+            this.delta = 0;
             battleManager.isMyturn = true;
         }
         else if (damage <= 6 && eneMP >=10)
@@ -52,6 +57,7 @@ public class EnemyControllerAS : MonoBehaviour
             eneMP -= 10;
             unityChanControllerAS.myHP -= eneATK * 1.2;
             this.parameterText.GetComponent<Text>().text = "HPを" + (eneATK * 1.2) + "削られた！";
+            this.delta = 0;
             battleManager.isMyturn = true;
         }
         else if (damage <= 9 && eneHP <= unityChanControllerAS.myATK)
@@ -59,6 +65,7 @@ public class EnemyControllerAS : MonoBehaviour
             this.parameterText.GetComponent<Text>().text = "敵のHPが " + (eneHP * 0.3) + "回復\n" + "敵のMPが " + (eneMP * 0.3) + "回復";
             eneHP *= 1.3;
             eneMP *= 1.3;
+            this.delta = 0;
             battleManager.isMyturn = true;
         }
         else
@@ -73,6 +80,7 @@ public class EnemyControllerAS : MonoBehaviour
             {
                 this.parameterText.GetComponent<Text>().text = "敵が空振りした！";
             }
+            this.delta = 0;
             battleManager.isMyturn = true;
         }
         //Debug.Log(myHP);
@@ -81,8 +89,9 @@ public class EnemyControllerAS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.delta += Time.deltaTime;
         //戦闘処理
-        if (battleManager.isMyturn == false)
+        if (battleManager.isMyturn == false && this.delta > this.span)
         {
             if (unityChanControllerAS.myHP > 0 && eneHP > 0)
             {
