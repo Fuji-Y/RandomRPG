@@ -11,17 +11,13 @@ public class UnityChanControllerAS : MonoBehaviour
     public int myATK = 100;
     //表示するテキスト
     private GameObject parameterText;
-    //時間計測用の数字
-    private float delta = 0;
-    //待ってほしい時間
-    private float span = 1;
+    private GameObject eneHPMPText;
 
     BattleManager battleManager;
     EnemyControllerAS enemyControllerAS;
 
     //コンポーネントを入れる
     private Animator animator;
-    private Vector3 moveDirection = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +28,8 @@ public class UnityChanControllerAS : MonoBehaviour
         animator = GetComponent<Animator>();
         //シーン中のTextオブジェクトを取得
         this.parameterText = GameObject.Find("ParameterText");
+        this.eneHPMPText = GameObject.Find("EneHPMPText");
+        this.eneHPMPText.GetComponent<Text>().text = "HP " + enemyControllerAS.eneHP + "\nMP " + enemyControllerAS.eneMP;
     }
 
     void Attack()
@@ -42,7 +40,8 @@ public class UnityChanControllerAS : MonoBehaviour
             enemyControllerAS.eneHP -= (myATK - enemyControllerAS.eneDEF);
             animator.SetBool("ScrewKick", true);
             this.parameterText.GetComponent<Text>().text = "HPを"+ (myATK - enemyControllerAS.eneDEF) + "削った！" ;
-            this.delta = 0;
+            this.eneHPMPText.GetComponent<Text>().text = "HP " + enemyControllerAS.eneHP + "\nMP " + enemyControllerAS.eneMP;
+            battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2) && myMP >= 10)
@@ -50,7 +49,8 @@ public class UnityChanControllerAS : MonoBehaviour
             myMP -= 10;
             enemyControllerAS.eneHP -= myATK * 1.2;
             this.parameterText.GetComponent<Text>().text = "HPを" + (myATK * 1.2) + "削った！";
-            this.delta = 0;
+            this.eneHPMPText.GetComponent<Text>().text = "HP " + enemyControllerAS.eneHP + "\nMP " + enemyControllerAS.eneMP;
+            battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -58,7 +58,7 @@ public class UnityChanControllerAS : MonoBehaviour
             this.parameterText.GetComponent<Text>().text = "HPが" + (myHP * 0.3) + "回復\n" + "MPが" + (myMP * 0.3) + "回復";
             myHP *= 1.3;
             myMP *= 1.3;
-            this.delta = 0;
+            battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
@@ -68,11 +68,12 @@ public class UnityChanControllerAS : MonoBehaviour
             {
                 enemyControllerAS.eneHP -= (myATK * 3 - enemyControllerAS.eneDEF);
                 this.parameterText.GetComponent<Text>().text = "HPを" + (myATK * 3 - enemyControllerAS.eneDEF) + "削った！";
+                this.eneHPMPText.GetComponent<Text>().text = "HP " + enemyControllerAS.eneHP + "\nMP " + enemyControllerAS.eneMP;
             } else
             {
                 this.parameterText.GetComponent<Text>().text = "空振りした！";
             }
-            this.delta = 0;
+            battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
         //Debug.Log(hisHP);
@@ -87,9 +88,8 @@ public class UnityChanControllerAS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.delta += Time.deltaTime;
         //戦闘処理
-        if (battleManager.isMyturn == true && this.delta > this.span)
+        if (battleManager.isMyturn == true && battleManager.delta > battleManager.span)
         {
             if (myHP > 0 && enemyControllerAS.eneHP > 0)
             {
