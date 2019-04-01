@@ -17,6 +17,34 @@ public class UnityChanControllerAS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+         if (DontDestroyOnLoadcs.color == 1)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.yellow;
+        }
+
+        if (DontDestroyOnLoadcs.color == 2)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.gray;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.gray;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.gray;
+        }
+
+        if (DontDestroyOnLoadcs.color == 3)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.green;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.green;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.green;
+        }
+
+        if (DontDestroyOnLoadcs.color == 4)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.cyan;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.cyan;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.cyan;
+        }
+
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         enemyControllerAS = GameObject.Find("ZolrikPrefab").GetComponent<EnemyControllerAS>();
         

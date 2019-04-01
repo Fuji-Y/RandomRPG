@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bstext: {fileID: 0}
-  MoneyText: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!1 &136209908
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,12 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871b07bb0053cb94b8aaa1e4b75416fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitychan: {fileID: 0}
-  difference: 0
 --- !u!1 &272163885
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -40, y: 40}
+  m_AnchoredPosition: {x: -45, y: 40}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &921080860
@@ -753,7 +747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bstext: {fileID: 0}
-  MoneyText: {fileID: 0}
+  moneyText: {fileID: 0}
 --- !u!4 &2026603537
 Transform:
   m_ObjectHideFlags: 0

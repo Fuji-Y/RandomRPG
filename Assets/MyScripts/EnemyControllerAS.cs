@@ -38,8 +38,8 @@ public class EnemyControllerAS : MonoBehaviour
             eneATK = 100;
         } else
         {
-            eneHP = 500 + DontDestroyOnLoadcs.myATK * 2;
-            eneMP = 10 + DontDestroyOnLoadcs.myMP;
+            eneHP = 100 + DontDestroyOnLoadcs.myATK * 2;
+            eneMP = 10 + DontDestroyOnLoadcs.myMP * 2;
             eneDEF = DontDestroyOnLoadcs.myDEF;
             eneATK = DontDestroyOnLoadcs.myATK - 50;
         } 

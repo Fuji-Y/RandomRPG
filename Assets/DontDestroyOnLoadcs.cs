@@ -9,6 +9,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     public static double myMAXMP = 30;
 
     //ヨロイの色
+    public static int color;
 
     //戦闘時とポーション取得時に変化
     public static double myHP = 500;
@@ -23,6 +24,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     public static int kaisuu = 0;
     public static bool lose = false;
     public static bool mob;
+    public static bool boss;
 
     //場所
     public static bool Bukiya;

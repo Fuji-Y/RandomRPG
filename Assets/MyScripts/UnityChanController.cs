@@ -47,6 +47,36 @@ public class UnityChanController : MonoBehaviour
             DontDestroyOnLoadcs.Bukiya = false;
         }
 
+        if (DontDestroyOnLoadcs.boss) DontDestroyOnLoadcs.boss = false;
+
+        if(DontDestroyOnLoadcs.color == 1)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.yellow;
+        }
+
+        if (DontDestroyOnLoadcs.color == 2)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.gray;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.gray;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.gray;
+        }
+
+        if (DontDestroyOnLoadcs.color == 3)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.green;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.green;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.green;
+        }
+
+        if (DontDestroyOnLoadcs.color == 4)
+        {
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.cyan;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.cyan;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.cyan;
+        }
+
         //Animatorコンポーネントを取得
         this.myAnimator = GetComponent<Animator>();
 
@@ -115,6 +145,7 @@ public class UnityChanController : MonoBehaviour
             //接触したオブジェクトを破棄
             Destroy(other.gameObject);
             //お金を増やす
+            DontDestroyOnLoadcs.money += 100;
         }
 
         if (other.gameObject.tag == "PortionTag")
@@ -124,6 +155,7 @@ public class UnityChanController : MonoBehaviour
             //接触したオブジェクトを破棄
             Destroy(other.gameObject);
             //MPを増やす
+            DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
         }
 
         if (other.gameObject.tag == "ZolrikTag")
@@ -148,7 +180,7 @@ public class UnityChanController : MonoBehaviour
         {
             //接触したオブジェクトを破棄
             Destroy(other.gameObject);
-            DontDestroyOnLoadcs.mob = true;
+            DontDestroyOnLoadcs.boss = true;
             //Scene切り替え
             SceneManager.LoadScene("AttackingScene");
         }

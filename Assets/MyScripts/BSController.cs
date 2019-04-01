@@ -15,12 +15,11 @@ public class BSController : MonoBehaviour
     {
         bstext = GameObject.Find("BStext");
         moneyText = GameObject.Find("MoneyText");
+        moneyText.GetComponent<Text>().text = "所持ゴールド\n" + DontDestroyOnLoadcs.money + "G";
         Starttext();
         GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.white;
-
-        
     }
 
     // Update is called once per frame
@@ -40,26 +39,38 @@ public class BSController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            bstext.GetComponent<Text>().text = "革の鎧     100G\nHP Default + 50   MP Default + 10\n防御 Default + 30   攻撃 Default + 50\n\n購入しますか?\nYes → y   No → n";
+            bstext.GetComponent<Text>().text = "革の鎧     100G\nHP + 50      MP + 10\n防御 + 30      攻撃 + 50\n\n購入しますか?\nYes → y   No → n";
             this.count = 1;
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.yellow;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.yellow;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            bstext.GetComponent<Text>().text = "鉄の鎧     500G\nHP Default + 100   MP Default + 20\n防御 Default + 50   攻撃 Default + 100\n\n購入しますか?\nYes → y   No → n";
+            bstext.GetComponent<Text>().text = "鉄の鎧     500G\nHP + 100      MP + 20\n防御 + 50      攻撃 + 100\n\n購入しますか?\nYes → y   No → n";
             this.count = 2;
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.gray;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.gray;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.gray;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            bstext.GetComponent<Text>().text = "鋼の鎧     1000G\nHP Default + 200   MP Default + 30\n防御 Default + 100   攻撃 Default + 150\n\n購入しますか?\nYes → y   No → n";
+            bstext.GetComponent<Text>().text = "鋼の鎧     1000G\nHP + 200      MP + 30\n防御 + 100      攻撃 + 150\n\n購入しますか?\nYes → y   No → n";
             this.count = 3;
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.green;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.green;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.green;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            bstext.GetComponent<Text>().text = "ミスリルの鎧      1500G\nHP Default + 500   MP Default + 50\n防御 Default + 50   攻撃 Default + 200\n\n購入しますか?\nYes → y   No → n";
+            bstext.GetComponent<Text>().text = "ミスリルの鎧      1500G\nHP + 500      MP + 50\n防御 + 50      攻撃 + 200\n\n購入しますか?\nYes → y   No → n";
             this.count = 4;
+            GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.cyan;
+            GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.cyan;
+            GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.cyan;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -76,22 +87,79 @@ public class BSController : MonoBehaviour
             if (DontDestroyOnLoadcs.money >= 100)
             {
                 DontDestroyOnLoadcs.money -= 100;
+                DontDestroyOnLoadcs.myMAXHP += 50;
+                DontDestroyOnLoadcs.myMAXMP += 10;
+                DontDestroyOnLoadcs.myDEF += 30;
+                DontDestroyOnLoadcs.myATK += 50;
+                DontDestroyOnLoadcs.color = 1;
                 SceneManager.LoadScene("GameScene");
-            } else
+            }
+            if (DontDestroyOnLoadcs.money < 100)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\n";
             }
         }
-        if (count == 1 && Input.GetKeyDown(KeyCode.N))
+
+        if (count == 2 && Input.GetKeyDown(KeyCode.Y))
         {
-            Starttext();
+            if (DontDestroyOnLoadcs.money >= 500)
+            {
+                DontDestroyOnLoadcs.money -= 500;
+                DontDestroyOnLoadcs.myMAXHP += 100;
+                DontDestroyOnLoadcs.myMAXMP += 20;
+                DontDestroyOnLoadcs.myDEF += 50;
+                DontDestroyOnLoadcs.myATK += 100;
+                DontDestroyOnLoadcs.color = 2;
+                SceneManager.LoadScene("GameScene");
+            }
+            if (DontDestroyOnLoadcs.money < 500)
+            {
+                bstext.GetComponent<Text>().text = "お金が足りません\n";
+            }
+        }
+
+        if (count == 3 && Input.GetKeyDown(KeyCode.Y))
+        {
+            if (DontDestroyOnLoadcs.money >= 800)
+            {
+                DontDestroyOnLoadcs.money -= 800;
+                DontDestroyOnLoadcs.myMAXHP += 200;
+                DontDestroyOnLoadcs.myMAXMP += 30;
+                DontDestroyOnLoadcs.myDEF += 100;
+                DontDestroyOnLoadcs.myATK += 150;
+                DontDestroyOnLoadcs.color = 3;
+                SceneManager.LoadScene("GameScene");
+            }
+            if (DontDestroyOnLoadcs.money < 800)
+            {
+                bstext.GetComponent<Text>().text = "お金が足りません\n";
+            }
+        }
+
+        if (count == 4 && Input.GetKeyDown(KeyCode.Y))
+        {
+            if (DontDestroyOnLoadcs.money >= 1200)
+            {
+                DontDestroyOnLoadcs.money -= 1200;
+                DontDestroyOnLoadcs.myMAXHP += 500;
+                DontDestroyOnLoadcs.myMAXMP += 50;
+                DontDestroyOnLoadcs.myDEF += 150;
+                DontDestroyOnLoadcs.myATK += 200;
+                DontDestroyOnLoadcs.color = 4;
+                SceneManager.LoadScene("GameScene");
+            }
+            if (DontDestroyOnLoadcs.money < 1200)
+            {
+                bstext.GetComponent<Text>().text = "お金が足りません\n";
+            }
         }
 
         if (count == 5 && Input.GetKeyDown(KeyCode.Y))
         {
             SceneManager.LoadScene("GameScene");
         }
-        if (count == 5 && Input.GetKeyDown(KeyCode.N))
+
+        if (Input.GetKeyDown(KeyCode.N))
         {
             Starttext();
         }
