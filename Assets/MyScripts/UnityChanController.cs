@@ -13,9 +13,9 @@ public class UnityChanController : MonoBehaviour
     /*入力させる
     private InputField inputField;*/
     //前進するための力
-    public float forwardForce = 500.0f; //150
+    public float forwardForce = 300.0f; //150
     //動きを減速させる係数
-    private float coefficient = 0.95f;
+    private float coefficient = 0.9f;
     //立ち止まる判定
     public bool stop = false;
     //public bool one = true;
@@ -34,6 +34,17 @@ public class UnityChanController : MonoBehaviour
             posz.z = 125;
             transform.position = posz;
             DontDestroyOnLoadcs.mob = false;
+        }
+
+        if (DontDestroyOnLoadcs.Bukiya)
+        {
+            Vector3 posy = transform.position;
+            posy.y = 0.6f;
+            transform.position = posy;
+            Vector3 posz = transform.position;
+            posz.z = 140;
+            transform.position = posz;
+            DontDestroyOnLoadcs.Bukiya = false;
         }
 
         //Animatorコンポーネントを取得
@@ -73,17 +84,6 @@ public class UnityChanController : MonoBehaviour
             //stateTextに選択を求める言葉を表示
             this.stateText.GetComponent<Text>().text = "←/→のどちらかを選択してください";
             this.stop = true;
-            /*
-            if (one && inputField.text.Length >= 1)
-            {
-                InputLogger();
-            }
-
-            if (one)
-            {
-                this.stop = true;
-            }
-            */
         }
 
         //コース突入時の場合
@@ -139,19 +139,20 @@ public class UnityChanController : MonoBehaviour
         {
             //接触したオブジェクトを破棄
             Destroy(other.gameObject);
+            DontDestroyOnLoadcs.Bukiya = true;
             //Scene切り替え
             SceneManager.LoadScene("BuyingScene");
         }
-        /*
-        if (other.gameObject.tag == "TurnPoint1" && inputValue == 1 || other.gameObject.tag == "TurnPoint2" && inputValue == 2 || other.gameObject.tag == "TurnPoint3" && inputValue == 3 || other.gameObject.tag == "TurnPoint4" && inputValue == 4)
+
+        if (other.gameObject.tag == "ZolrikMercenaryTag")
         {
-            //directionのz軸の方向を向かせる
-            Vector3 direction = transform.position;
-            transform.rotation = Quaternion.LookRotation(new Vector3
-                (0, 0, direction.z));
+            //接触したオブジェクトを破棄
+            Destroy(other.gameObject);
+            DontDestroyOnLoadcs.mob = true;
+            //Scene切り替え
+            SceneManager.LoadScene("AttackingScene");
         }
-        */
-    }  
+    }
 
     void OnTriggerStay (Collider other)
     {
@@ -160,16 +161,19 @@ public class UnityChanController : MonoBehaviour
             if (Input.GetKey(KeyCode.LeftArrow))
             {
                 //directionの-X軸の方向を向かせる
+                other.gameObject.tag = "Untagged";
                 Vector3 direction = transform.position;
                 transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
                 this.stop = false;
                 this.forwardForce = 500.0f;
                 this.myAnimator.speed = 1.0f;
                 this.stateText.GetComponent<Text>().text = null;
+               
             }
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 //directionのX軸の方向を向かせる
+                other.gameObject.tag = "Untagged";
                 Vector3 direction = transform.position;
                 transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
                 this.stop = false;

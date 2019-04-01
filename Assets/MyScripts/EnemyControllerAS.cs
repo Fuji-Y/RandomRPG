@@ -28,7 +28,7 @@ public class EnemyControllerAS : MonoBehaviour
         eneanimator = GetComponent<Animator>();
 
         this.parameterText = GameObject.Find("ParameterText");
-        DontDestroyOnLoadcs.kaisuu += 1;
+        if(DontDestroyOnLoadcs.mob) DontDestroyOnLoadcs.kaisuu += 1;
 
         if (DontDestroyOnLoadcs.kaisuu == 1 || DontDestroyOnLoadcs.lose)
         {

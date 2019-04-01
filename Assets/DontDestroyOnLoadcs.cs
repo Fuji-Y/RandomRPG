@@ -24,6 +24,9 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     public static bool lose = false;
     public static bool mob;
 
+    //場所
+    public static bool Bukiya;
+
     // Start is called before the first frame update
     void Start()
     {

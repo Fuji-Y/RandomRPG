@@ -7,16 +7,20 @@ using UnityEngine.SceneManagement;
 public class BSController : MonoBehaviour
 {
     public GameObject bstext;
+    public GameObject moneyText;
     private int count;
 
     // Start is called before the first frame update
     void Start()
     {
         bstext = GameObject.Find("BStext");
+        moneyText = GameObject.Find("MoneyText");
         Starttext();
         GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.white;
         GameObject.Find("shirts_sode").GetComponent<Renderer>().material.color = Color.white;
+
+        
     }
 
     // Update is called once per frame
@@ -69,7 +73,14 @@ public class BSController : MonoBehaviour
     {
         if (count == 1 && Input.GetKeyDown(KeyCode.Y))
         {
-            SceneManager.LoadScene("GameScene");
+            if (DontDestroyOnLoadcs.money >= 100)
+            {
+                DontDestroyOnLoadcs.money -= 100;
+                SceneManager.LoadScene("GameScene");
+            } else
+            {
+                bstext.GetComponent<Text>().text = "お金が足りません\n";
+            }
         }
         if (count == 1 && Input.GetKeyDown(KeyCode.N))
         {

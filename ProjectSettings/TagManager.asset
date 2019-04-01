@@ -15,6 +15,7 @@ TagManager:
   - LeftTag
   - RightTag
   - BukiyaTag
+  - ZolrikMercenaryTag
   layers:
   - Default
   - TransparentFX
