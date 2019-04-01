@@ -25,6 +25,16 @@ public class UnityChanController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (DontDestroyOnLoadcs.mob)
+        {
+            Vector3 posy = transform.position;
+            posy.y = 0.6f;
+            transform.position = posy;
+            Vector3 posz = transform.position;
+            posz.z = 125;
+            transform.position = posz;
+            DontDestroyOnLoadcs.mob = false;
+        }
 
         //Animatorコンポーネントを取得
         this.myAnimator = GetComponent<Animator>();
@@ -119,7 +129,8 @@ public class UnityChanController : MonoBehaviour
         if (other.gameObject.tag == "ZolrikTag")
         {
             //接触したオブジェクトを破棄
-            Destroy(other.gameObject); 
+            Destroy(other.gameObject);
+            DontDestroyOnLoadcs.mob = true;
             //Scene切り替え
             SceneManager.LoadScene("AttackingScene");
         }
@@ -129,6 +140,7 @@ public class UnityChanController : MonoBehaviour
             //接触したオブジェクトを破棄
             Destroy(other.gameObject);
             //Scene切り替え
+            SceneManager.LoadScene("BuyingScene");
         }
         /*
         if (other.gameObject.tag == "TurnPoint1" && inputValue == 1 || other.gameObject.tag == "TurnPoint2" && inputValue == 2 || other.gameObject.tag == "TurnPoint3" && inputValue == 3 || other.gameObject.tag == "TurnPoint4" && inputValue == 4)

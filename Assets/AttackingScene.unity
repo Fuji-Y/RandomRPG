@@ -398,7 +398,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 200, y: 25}
+  m_AnchoredPosition: {x: 200, y: 50}
   m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327052212
@@ -683,6 +683,7 @@ MonoBehaviour:
   eneMP: 0
   eneDEF: 0
   eneATK: 0
+  eneanimator: {fileID: 0}
 --- !u!1 &878972962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1081,7 @@ MonoBehaviour:
   myMP: 30
   myDEF: 0
   myATK: 100
+  animator: {fileID: 0}
 --- !u!1 &1732651109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,4 +1219,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isMyturn: 1
   delta: 0
-  span: 2
+  span: 3
+  endsene: 0
