@@ -9,6 +9,7 @@ public class BSController : MonoBehaviour
     public GameObject bstext;
     public GameObject moneyText;
     private int count;
+    private bool isBought = false;
 
     // Start is called before the first frame update
     void Start()
@@ -91,10 +92,11 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myMAXMP += 10;
                 DontDestroyOnLoadcs.myDEF += 30;
                 DontDestroyOnLoadcs.myATK += 50;
+                isBought = true;
                 DontDestroyOnLoadcs.color = 1;
                 SceneManager.LoadScene("GameScene");
             }
-            if (DontDestroyOnLoadcs.money < 100)
+            if (DontDestroyOnLoadcs.money < 100 && !isBought)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\n";
             }

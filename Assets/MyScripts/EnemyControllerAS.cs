@@ -7,8 +7,8 @@ public class EnemyControllerAS : MonoBehaviour
 {
     public double eneHP;
     public double eneMP;
-    public int eneDEF;
-    public int eneATK;
+    public double eneDEF;
+    public double eneATK;
 
     BattleManager battleManager;
     UnityChanControllerAS unityChanControllerAS;
@@ -29,26 +29,37 @@ public class EnemyControllerAS : MonoBehaviour
 
         this.parameterText = GameObject.Find("ParameterText");
         if(DontDestroyOnLoadcs.mob) DontDestroyOnLoadcs.kaisuu += 1;
+        if (DontDestroyOnLoadcs.boss) DontDestroyOnLoadcs.boskaisuu += 1;
 
-        if (DontDestroyOnLoadcs.kaisuu == 1 || DontDestroyOnLoadcs.lose)
+        if ((DontDestroyOnLoadcs.mob && DontDestroyOnLoadcs.kaisuu == 1) || DontDestroyOnLoadcs.lose)
         {
             eneHP = 500;
             eneMP = 30;
             eneDEF = 0;
             eneATK = 100;
-        } else
+        } else if (DontDestroyOnLoadcs.mob)
         {
             eneHP = 100 + DontDestroyOnLoadcs.myATK * 2;
-            eneMP = 10 + DontDestroyOnLoadcs.myMP * 2;
+            eneMP = 10 + DontDestroyOnLoadcs.myMAXMP;
             eneDEF = DontDestroyOnLoadcs.myDEF;
             eneATK = DontDestroyOnLoadcs.myATK - 50;
         } 
+
+        if (DontDestroyOnLoadcs.boss)
+        {
+            eneHP = 200 + DontDestroyOnLoadcs.myATK * 2;
+            eneMP = DontDestroyOnLoadcs.myMAXMP * 2;
+            eneDEF = DontDestroyOnLoadcs.myDEF +10;
+            eneATK = DontDestroyOnLoadcs.myATK - 10;
+        }
 
     }
 
     void Attack()
     {
-        int damage = Random.Range(1, 9);
+        ishit = false;
+        //int damage = Random.Range(1, 9);
+        int damage = 9;
         if (damage <= 3)
         {
             DontDestroyOnLoadcs.myHP -= (eneATK - DontDestroyOnLoadcs.myDEF);
@@ -132,11 +143,6 @@ public class EnemyControllerAS : MonoBehaviour
                 DontDestroyOnLoadcs.money += DontDestroyOnLoadcs.kaisuu * 100;
                 this.parameterText.GetComponent<Text>().text = "戦闘終了:勝利！\n" + DontDestroyOnLoadcs.money + "G 獲得！";
                 DontDestroyOnLoadcs.lose = false;
-                DontDestroyOnLoadcs.myMAXHP += 50;
-                DontDestroyOnLoadcs.myMAXMP += 10;
-                DontDestroyOnLoadcs.myDEF += 25;
-                DontDestroyOnLoadcs.myATK += 50;
-
                 battleManager.endscene = true;
             }
         }

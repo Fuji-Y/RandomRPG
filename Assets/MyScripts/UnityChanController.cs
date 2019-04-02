@@ -25,7 +25,7 @@ public class UnityChanController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        if (DontDestroyOnLoadcs.mob)
+        if (DontDestroyOnLoadcs.mob && DontDestroyOnLoadcs.lose == false)
         {
             Vector3 posy = transform.position;
             posy.y = 0.6f;
@@ -47,6 +47,7 @@ public class UnityChanController : MonoBehaviour
             DontDestroyOnLoadcs.Bukiya = false;
         }
 
+        if (DontDestroyOnLoadcs.mob) DontDestroyOnLoadcs.mob = false;
         if (DontDestroyOnLoadcs.boss) DontDestroyOnLoadcs.boss = false;
 
         if(DontDestroyOnLoadcs.color == 1)

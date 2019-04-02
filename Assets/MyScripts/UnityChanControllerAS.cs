@@ -17,7 +17,9 @@ public class UnityChanControllerAS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-         if (DontDestroyOnLoadcs.color == 1)
+        DontDestroyOnLoadcs.myHP = DontDestroyOnLoadcs.myMAXHP;
+
+        if (DontDestroyOnLoadcs.color == 1)
         {
             GameObject.Find("uwagi").GetComponent<Renderer>().material.color = Color.yellow;
             GameObject.Find("Shirts").GetComponent<Renderer>().material.color = Color.yellow;
@@ -147,7 +149,6 @@ public class UnityChanControllerAS : MonoBehaviour
             {
                 this.parameterText.GetComponent<Text>().text = "戦闘終了:敗北";
                 DontDestroyOnLoadcs.lose = true;
-                DontDestroyOnLoadcs.money = 0;
                 battleManager.endscene = true;
             }
         }

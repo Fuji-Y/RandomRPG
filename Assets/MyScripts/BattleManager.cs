@@ -70,8 +70,24 @@ public class BattleManager : MonoBehaviour
 
     void EndScene()
     {
-        DontDestroyOnLoadcs.myHP = DontDestroyOnLoadcs.myMAXHP;
         if (DontDestroyOnLoadcs.myMP < DontDestroyOnLoadcs.myMAXMP / 2) DontDestroyOnLoadcs.myHP = DontDestroyOnLoadcs.myMAXMP / 2;
-        SceneManager.LoadScene("GameScene");
+        if (DontDestroyOnLoadcs.lose == true) DontDestroyOnLoadcs.money = 0;
+        if(DontDestroyOnLoadcs.lose == false)
+        {
+            DontDestroyOnLoadcs.myMAXHP *= 1.2;
+            DontDestroyOnLoadcs.myMAXMP *= 1.2;
+            DontDestroyOnLoadcs.myDEF *= 1.2;
+            DontDestroyOnLoadcs.myATK *= 1.2;
+        }
+        if (DontDestroyOnLoadcs.boss && DontDestroyOnLoadcs.lose)
+        {
+            if (DontDestroyOnLoadcs.boskaisuu >= 1)
+            {
+                DontDestroyOnLoadcs.boskaisuu -= 1;
+            }
+        }
+
+        if (DontDestroyOnLoadcs.boskaisuu < 3) SceneManager.LoadScene("GameScene");
+        if (DontDestroyOnLoadcs.boskaisuu == 3) SceneManager.LoadScene("ResultScene");
     }
 }
