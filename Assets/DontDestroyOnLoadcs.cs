@@ -23,6 +23,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     //戦闘何回目か
     public static int kaisuu = 0;
     public static int boskaisuu = 0;
+    public static int losekaisuu = 0;
     public static bool lose = false;
     public static bool mob;
     public static bool boss;
@@ -33,7 +34,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //TitleSceneでのロード　BattleManager終了後とItem購入後のセーブ　PlayerPrefs
     }
 
     // Update is called once per frame

@@ -71,7 +71,12 @@ public class BattleManager : MonoBehaviour
     void EndScene()
     {
         if (DontDestroyOnLoadcs.myMP < DontDestroyOnLoadcs.myMAXMP / 2) DontDestroyOnLoadcs.myHP = DontDestroyOnLoadcs.myMAXMP / 2;
-        if (DontDestroyOnLoadcs.lose == true) DontDestroyOnLoadcs.money = 0;
+        if (DontDestroyOnLoadcs.lose == true)
+        {
+            DontDestroyOnLoadcs.losekaisuu += 1;
+            if (!DontDestroyOnLoadcs.boss) DontDestroyOnLoadcs.money = 0;
+        }
+
         if(DontDestroyOnLoadcs.lose == false)
         {
             DontDestroyOnLoadcs.myMAXHP *= 1.2;
@@ -79,6 +84,7 @@ public class BattleManager : MonoBehaviour
             DontDestroyOnLoadcs.myDEF *= 1.2;
             DontDestroyOnLoadcs.myATK *= 1.2;
         }
+
         if (DontDestroyOnLoadcs.boss && DontDestroyOnLoadcs.lose)
         {
             if (DontDestroyOnLoadcs.boskaisuu >= 1)

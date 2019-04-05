@@ -21,6 +21,8 @@ public class UnityChanController : MonoBehaviour
     //public bool one = true;
     //ルート選択時に表示するテキスト
     private GameObject stateText;
+    //Button
+    ButtonSizeController buttonController;
 
     // Use this for initialization
     void Start()
@@ -90,8 +92,7 @@ public class UnityChanController : MonoBehaviour
         //シーン中のstateTextオブジェクトを取得
         this.stateText = GameObject.Find("ChoiceText");
 
-        /*入力させる
-        this.inputField = GameObject.Find("InputField").GetComponent<InputField>();*/
+        this.buttonController = GameObject.Find("Scripts/ButtonSize").GetComponent<ButtonSizeController>();
     }
 
     void Update()
@@ -191,7 +192,7 @@ public class UnityChanController : MonoBehaviour
     {
         if (other.gameObject.tag == "FirstGoalTag")
         {
-            if (Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) || buttonController.isLButtonDown)
             {
                 //directionの-X軸の方向を向かせる
                 other.gameObject.tag = "Untagged";
@@ -203,7 +204,7 @@ public class UnityChanController : MonoBehaviour
                 this.stateText.GetComponent<Text>().text = null;
                
             }
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) || buttonController.isRButtonDown)
             {
                 //directionのX軸の方向を向かせる
                 other.gameObject.tag = "Untagged";

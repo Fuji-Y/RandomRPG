@@ -44,7 +44,7 @@ public class RSController : MonoBehaviour
     void Resulttext()
     {
         resultText = GameObject.Find("ResultText");
-        resultText.GetComponent<Text>().text = "倒したボスの数" + DontDestroyOnLoadcs.boskaisuu;
+        resultText.GetComponent<Text>().text = "倒したボスの数  " + DontDestroyOnLoadcs.boskaisuu + "\n敗北回数  " + DontDestroyOnLoadcs.losekaisuu + "\n所持ゴールド  " + DontDestroyOnLoadcs.money + "G";
     }
 
     // Update is called once per frame
