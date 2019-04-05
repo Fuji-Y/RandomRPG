@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonControllerAS : MonoBehaviour
+public class ButtonControllerBS : MonoBehaviour
 {
     // Start is called before the first frame update
     private RectTransform button1;
     private RectTransform button2;
     private RectTransform button3;
     private RectTransform button4;
+    private RectTransform button5;
 
     //ボタン1押下の判定
     public bool isButton1Down = false;
@@ -18,12 +19,14 @@ public class ButtonControllerAS : MonoBehaviour
     public bool isButton3Down = false;
     //ボタン4押下の判定
     public bool isButton4Down = false;
+    //ボタン5押下の判定
+    public bool isButton5Down = false;
     
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -78,5 +81,17 @@ public class ButtonControllerAS : MonoBehaviour
     public void GetMyButton4Up()
     {
         this.isButton4Down = false;
+    }
+
+    //ボタン5を押し続けた場合の処理
+    public void GetMyButton5Down()
+    {
+        this.isButton5Down = true;
+    }
+
+    //ボタン5を離した場合の処理
+    public void GetMyButton5Up()
+    {
+        this.isButton5Down = false;
     }
 }

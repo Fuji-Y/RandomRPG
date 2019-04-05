@@ -58,8 +58,7 @@ public class EnemyControllerAS : MonoBehaviour
     void Attack()
     {
         ishit = false;
-        //int damage = Random.Range(1, 9);
-        int damage = 9;
+        int damage = Random.Range(1, 9);
         if (damage <= 3)
         {
             DontDestroyOnLoadcs.myHP -= (eneATK - DontDestroyOnLoadcs.myDEF);
@@ -136,12 +135,13 @@ public class EnemyControllerAS : MonoBehaviour
         {
             if (DontDestroyOnLoadcs.myHP > 0 && eneHP > 0)
             {
+                Debug.Log("Attackの呼び出し");
                 Attack();
             }
             else
             {
                 DontDestroyOnLoadcs.money += DontDestroyOnLoadcs.kaisuu * 100;
-                this.parameterText.GetComponent<Text>().text = "戦闘終了:勝利！\n" + DontDestroyOnLoadcs.money + "G 獲得！";
+                this.parameterText.GetComponent<Text>().text = "戦闘終了:勝利！\n" + DontDestroyOnLoadcs.kaisuu * 100 + "G 獲得！";
                 DontDestroyOnLoadcs.lose = false;
                 battleManager.endscene = true;
             }
