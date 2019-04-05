@@ -92,7 +92,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 30;
                 DontDestroyOnLoadcs.myATK += 50;
                 DontDestroyOnLoadcs.color = 1;
-                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
+                //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 100)
@@ -111,7 +111,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 50;
                 DontDestroyOnLoadcs.myATK += 100;
                 DontDestroyOnLoadcs.color = 2;
-                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
+                //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 500)
@@ -130,7 +130,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 100;
                 DontDestroyOnLoadcs.myATK += 150;
                 DontDestroyOnLoadcs.color = 3;
-                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
+                //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 800)
@@ -149,7 +149,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 150;
                 DontDestroyOnLoadcs.myATK += 200;
                 DontDestroyOnLoadcs.color = 4;
-                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
+                //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 1200)

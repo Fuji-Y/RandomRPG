@@ -84,7 +84,7 @@ public class UnityChanController : MonoBehaviour
         this.myAnimator = GetComponent<Animator>();
 
         //走るアニメーションを開始
-        this.myAnimator.SetFloat("Speed", 0.5f);
+        this.myAnimator.SetFloat("Speed", 1.0f);
 
         //Rigidbodyコンポーネントを取得
         this.myRigidbody = GetComponent<Rigidbody>();
@@ -201,6 +201,7 @@ public class UnityChanController : MonoBehaviour
                 this.stop = false;
                 this.forwardForce = 500.0f;
                 this.myAnimator.speed = 1.0f;
+                this.myAnimator.SetFloat("Speed", 1.0f);
                 this.stateText.GetComponent<Text>().text = null;
                
             }
@@ -213,6 +214,7 @@ public class UnityChanController : MonoBehaviour
                 this.stop = false;
                 this.forwardForce = 500.0f;
                 this.myAnimator.speed = 1.0f;
+                this.myAnimator.SetFloat("Speed", 1.0f);
                 this.stateText.GetComponent<Text>().text = null;
             }
         }

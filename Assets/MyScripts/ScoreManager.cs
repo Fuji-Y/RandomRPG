@@ -52,6 +52,7 @@ public class ScoreManager : MonoBehaviour
         mob_bool = PlayerPrefs.GetInt("MOBBOOL");
         boss_bool = PlayerPrefs.GetInt("BOSSBOOL");
         Bukiya_bool = PlayerPrefs.GetInt("BUKIYABOOL");
+        Debug.Log(money_num);
     }
 
     // 削除時の処理
