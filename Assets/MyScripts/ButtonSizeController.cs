@@ -16,10 +16,7 @@ public class ButtonSizeController : MonoBehaviour
     public float x, y;  //変更したいサイズ
     void Start()
     {
-        rbutton = GameObject.Find("RightButton").GetComponent<RectTransform>();
-        rbutton.sizeDelta = new Vector2(50, 50); //サイズが変更できる　
-        lbutton = GameObject.Find("LeftButton").GetComponent<RectTransform>();
-        lbutton.sizeDelta = new Vector2(50, 50); //サイズが変更できる　
+
     }
 
     // Update is called once per frame

@@ -10,6 +10,7 @@ public class UnityChanControllerAS : MonoBehaviour
 
     BattleManager battleManager;
     EnemyControllerAS enemyControllerAS;
+    ButtonControllerAS buttonControllerAS;
     private bool isHit = false;
     //コンポーネントを入れる
     public Animator animator;
@@ -48,7 +49,9 @@ public class UnityChanControllerAS : MonoBehaviour
         }
 
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-        enemyControllerAS = GameObject.Find("ZolrikPrefab").GetComponent<EnemyControllerAS>();
+        if(DontDestroyOnLoadcs.mob)enemyControllerAS = GameObject.Find("ZolrikPrefab").GetComponent<EnemyControllerAS>();
+        if(DontDestroyOnLoadcs.boss) enemyControllerAS = GameObject.Find("ZolrikMercenary").GetComponent<EnemyControllerAS>();
+        buttonControllerAS = GameObject.Find("ButtonControllerAS").GetComponent<ButtonControllerAS>();
         
         animator = GetComponent<Animator>();
         //シーン中のTextオブジェクトを取得
@@ -60,7 +63,7 @@ public class UnityChanControllerAS : MonoBehaviour
     {
         isHit = false;
         this.parameterText.GetComponent<Text>().text = "1,2,3,4から数字を選択してください\n1.通常攻撃    2.MP消費攻撃\n3.瞑想    4.狙い打ち";
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) || buttonControllerAS.isButton1Down)
         {
             enemyControllerAS.eneHP -= (DontDestroyOnLoadcs.myATK - enemyControllerAS.eneDEF);
             isHit = true;
@@ -70,7 +73,7 @@ public class UnityChanControllerAS : MonoBehaviour
             battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && DontDestroyOnLoadcs.myMP >= 10)
+        if ((Input.GetKeyDown(KeyCode.Alpha2)|| buttonControllerAS.isButton2Down) && DontDestroyOnLoadcs.myMP >= 10)
         {
             DontDestroyOnLoadcs.myMP -= 10;
             isHit = true;
@@ -81,7 +84,7 @@ public class UnityChanControllerAS : MonoBehaviour
             battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (Input.GetKeyDown(KeyCode.Alpha3) || buttonControllerAS.isButton3Down)
         {
             this.parameterText.GetComponent<Text>().text = "瞑想\nHPが" + (DontDestroyOnLoadcs.myHP * 0.3) + "回復\n" + "MPが" + (DontDestroyOnLoadcs.myMP * 0.3) + "回復";
             animator.SetBool("Pose", true);
@@ -90,7 +93,7 @@ public class UnityChanControllerAS : MonoBehaviour
             battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (Input.GetKeyDown(KeyCode.Alpha4) || buttonControllerAS.isButton4Down)
         {
             int kakuritu = Random.Range(1, 11);
             if (kakuritu <= 4)

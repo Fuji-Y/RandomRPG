@@ -25,10 +25,17 @@ public class BattleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (DontDestroyOnLoadcs.mob) Destroy(GameObject.Find("ZolrikMercenary"));
-        if (DontDestroyOnLoadcs.boss) Destroy(GameObject.Find("ZolrikPrefab"));
+        if (DontDestroyOnLoadcs.mob)
+        {
+            Destroy(GameObject.Find("ZolrikMercenary"));
+            enemyControllerAS = GameObject.Find("ZolrikPrefab").GetComponent<EnemyControllerAS>();
+        }
+        if (DontDestroyOnLoadcs.boss)
+        {
+            Destroy(GameObject.Find("ZolrikPrefab"));
+            enemyControllerAS = GameObject.Find("ZolrikMercenary").GetComponent<EnemyControllerAS>();
+        }
         unityChanControllerAS = GameObject.Find("unitychan").GetComponent<UnityChanControllerAS>();
-        enemyControllerAS = GameObject.Find("ZolrikPrefab").GetComponent<EnemyControllerAS>();
         this.eneHPMPText = GameObject.Find("EneHPMPText");
         this.myHPMPText = GameObject.Find("MyHPMPText");
     }

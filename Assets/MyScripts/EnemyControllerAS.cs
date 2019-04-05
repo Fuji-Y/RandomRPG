@@ -40,7 +40,7 @@ public class EnemyControllerAS : MonoBehaviour
         } else if (DontDestroyOnLoadcs.mob)
         {
             eneHP = 100 + DontDestroyOnLoadcs.myATK * 2;
-            eneMP = 10 + DontDestroyOnLoadcs.myMAXMP;
+            eneMP = DontDestroyOnLoadcs.myMAXMP;
             eneDEF = DontDestroyOnLoadcs.myDEF;
             eneATK = DontDestroyOnLoadcs.myATK - 50;
         } 
@@ -48,7 +48,7 @@ public class EnemyControllerAS : MonoBehaviour
         if (DontDestroyOnLoadcs.boss)
         {
             eneHP = 200 + DontDestroyOnLoadcs.myATK * 2;
-            eneMP = DontDestroyOnLoadcs.myMAXMP * 2;
+            eneMP = 10 + DontDestroyOnLoadcs.myMAXMP;
             eneDEF = DontDestroyOnLoadcs.myDEF +10;
             eneATK = DontDestroyOnLoadcs.myATK - 10;
         }

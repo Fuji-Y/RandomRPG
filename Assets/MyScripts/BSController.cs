@@ -9,7 +9,6 @@ public class BSController : MonoBehaviour
     public GameObject bstext;
     public GameObject moneyText;
     private int count;
-    private bool isBought = false;
 
     // Start is called before the first frame update
     void Start()
@@ -92,11 +91,11 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myMAXMP += 10;
                 DontDestroyOnLoadcs.myDEF += 30;
                 DontDestroyOnLoadcs.myATK += 50;
-                isBought = true;
                 DontDestroyOnLoadcs.color = 1;
+                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
-            if (DontDestroyOnLoadcs.money < 100 && !isBought)
+            if (DontDestroyOnLoadcs.money < 100)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\n";
             }
@@ -112,6 +111,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 50;
                 DontDestroyOnLoadcs.myATK += 100;
                 DontDestroyOnLoadcs.color = 2;
+                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 500)
@@ -130,6 +130,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 100;
                 DontDestroyOnLoadcs.myATK += 150;
                 DontDestroyOnLoadcs.color = 3;
+                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 800)
@@ -148,6 +149,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.myDEF += 150;
                 DontDestroyOnLoadcs.myATK += 200;
                 DontDestroyOnLoadcs.color = 4;
+                DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
             }
             if (DontDestroyOnLoadcs.money < 1200)
