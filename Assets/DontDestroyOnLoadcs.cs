@@ -68,6 +68,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
         // LoadButton ScoreManager後の処理
         myMAXHP = scoreManager.myMAXHP_num;
         myMAXMP = scoreManager.myMAXMP_num;
+        color = scoreManager.color_num;
         myHP = scoreManager.myHP_num;
         myMP = scoreManager.myMP_num;
         myDEF = scoreManager.myDEF_num;

@@ -73,13 +73,13 @@ public class UnityChanControllerAS : MonoBehaviour
             battleManager.delta = 0;
             battleManager.isMyturn = false;
         }
-        if ((Input.GetKeyDown(KeyCode.Alpha2)|| buttonControllerAS.isButton2Down) && DontDestroyOnLoadcs.myMP >= 10)
+        if ((Input.GetKeyDown(KeyCode.Alpha2)|| buttonControllerAS.isButton2Down) && DontDestroyOnLoadcs.myMP >= DontDestroyOnLoadcs.myMAXMP / (3 + DontDestroyOnLoadcs.color))
         {
-            DontDestroyOnLoadcs.myMP -= 10;
+            DontDestroyOnLoadcs.myMP -= DontDestroyOnLoadcs.myMAXMP / (3 + DontDestroyOnLoadcs.color);
             isHit = true;
-            enemyControllerAS.eneHP -= DontDestroyOnLoadcs.myATK * 2;
+            enemyControllerAS.eneHP -= DontDestroyOnLoadcs.myATK * 1.5;
             animator.SetBool("Hikick", true);
-            this.parameterText.GetComponent<Text>().text = "MP消費攻撃\nHPを" + (DontDestroyOnLoadcs.myATK * 2) + "削った！";
+            this.parameterText.GetComponent<Text>().text = "MP消費攻撃\nHPを" + (DontDestroyOnLoadcs.myATK * 1.5) + "削った！";
             //this.eneHPMPText.GetComponent<Text>().text = "HP " + enemyControllerAS.eneHP + "\nMP " + enemyControllerAS.eneMP;
             battleManager.delta = 0;
             battleManager.isMyturn = false;

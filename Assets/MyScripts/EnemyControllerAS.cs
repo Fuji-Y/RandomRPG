@@ -37,20 +37,19 @@ public class EnemyControllerAS : MonoBehaviour
             eneATK = 100;
         } else if (DontDestroyOnLoadcs.mob)
         {
-            eneHP = 100 + DontDestroyOnLoadcs.myATK * 2;
-            eneMP = DontDestroyOnLoadcs.myMAXMP;
+            eneHP = 100 + DontDestroyOnLoadcs.myATK * 3;
+            eneMP = DontDestroyOnLoadcs.myMAXMP / 1.3;
             eneDEF = DontDestroyOnLoadcs.myDEF;
-            eneATK = DontDestroyOnLoadcs.myATK - 50;
+            eneATK = DontDestroyOnLoadcs.myATK / 1.5;
         } 
 
         if (DontDestroyOnLoadcs.boss)
         {
-            eneHP = 200 + DontDestroyOnLoadcs.myATK * 2;
-            eneMP = 10 + DontDestroyOnLoadcs.myMAXMP;
-            eneDEF = DontDestroyOnLoadcs.myDEF +10;
-            eneATK = DontDestroyOnLoadcs.myATK - 10;
+            eneHP = 200 + DontDestroyOnLoadcs.myATK * 3;
+            eneMP = DontDestroyOnLoadcs.myMAXMP;
+            eneDEF = DontDestroyOnLoadcs.myATK / 4;
+            eneATK = DontDestroyOnLoadcs.myATK / 1.1;
         }
-
     }
 
     void Attack()
@@ -67,12 +66,12 @@ public class EnemyControllerAS : MonoBehaviour
             battleManager.isMyturn = true;
             ishit = true;
         }
-        else if (damage <= 6 && eneMP >= 10)
+        else if (damage <= 6 && eneMP >= DontDestroyOnLoadcs.myMAXMP / 5)
         {
-            eneMP -= 10;
-            DontDestroyOnLoadcs.myHP -= eneATK * 2;
+            eneMP -= DontDestroyOnLoadcs.myMAXMP / 5;
+            DontDestroyOnLoadcs.myHP -= eneATK * 1.5;
             eneanimator.SetBool("Attack", true);
-            this.parameterText.GetComponent<Text>().text = "敵のMP消費攻撃\nHPを" + (eneATK * 2) + "削られた！";
+            this.parameterText.GetComponent<Text>().text = "敵のMP消費攻撃\nHPを" + (eneATK * 1.5) + "削られた！";
             //this.myHPMPText.GetComponent<Text>().text = "HP " + unityChanControllerAS.myHP + "\nMP " + unityChanControllerAS.myMP;
             battleManager.delta = 0;
             battleManager.isMyturn = true;
