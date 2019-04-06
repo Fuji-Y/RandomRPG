@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BuyingScene.unity
     guid: 99ebe3772fe34654fa92222a111201e0
+  - enabled: 1
+    path: Assets/TitleScene.unity
+    guid: 3291946a65a7d3e428a94d037059ff73
+  - enabled: 1
+    path: Assets/ResultScene.unity
+    guid: 942d1ef3ab3254e49975ab78166b36c6
   m_configObjects: {}

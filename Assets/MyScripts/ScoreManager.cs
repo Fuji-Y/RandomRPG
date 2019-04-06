@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -31,53 +32,43 @@ public class ScoreManager : MonoBehaviour
     //場所
     public  int Bukiya_bool = 0;
 
+    DontDestroyOnLoadcs dontDestroyOnLoadcs;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        //ロード
-        myMAXHP_num = PlayerPrefs.GetInt("MYMAXHP");
-        myMAXMP_num = PlayerPrefs.GetInt("MYMAXMP");
-        color_num = PlayerPrefs.GetInt("COLOR");
-
-        myHP_num = PlayerPrefs.GetInt ("MYHP");
-        myMP_num = PlayerPrefs.GetInt ("MYMP");
-        myDEF_num = PlayerPrefs.GetInt ("MYDEF");
-        myATK_num = PlayerPrefs.GetInt ("MYATK");
-
-        money_num = PlayerPrefs.GetInt("MONEY");
-        kaisuu_num  = PlayerPrefs.GetInt("KAISUU");
-        boskaisuu_num = PlayerPrefs.GetInt("BOSKAISUU");
-        losekaisuu_num = PlayerPrefs.GetInt("LOSEKAISUU");
-        lose_bool = PlayerPrefs.GetInt("LOSEBOOL");
-        mob_bool = PlayerPrefs.GetInt("MOBBOOL");
-        boss_bool = PlayerPrefs.GetInt("BOSSBOOL");
-        Bukiya_bool = PlayerPrefs.GetInt("BUKIYABOOL");
-        Debug.Log(money_num);
+        if (SceneManager.GetActiveScene().name == "TitleScene") dontDestroyOnLoadcs = GameObject.Find("DontDestroyOnLoadcs").GetComponent<DontDestroyOnLoadcs>();
     }
 
     // 削除時の処理
     void OnDestroy()
     {
-        myMAXHP_num = (int)DontDestroyOnLoadcs.myMAXHP;
-        myMAXMP_num = (int)DontDestroyOnLoadcs.myMAXMP;
-        myHP_num = (int)DontDestroyOnLoadcs.myHP;
-        myMP_num = (int)DontDestroyOnLoadcs.myMP;
-        myDEF_num = (int)DontDestroyOnLoadcs.myDEF;
-        myATK_num = (int)DontDestroyOnLoadcs.myATK;
+        if (SceneManager.GetActiveScene().name == "AttackingScene" || SceneManager.GetActiveScene().name == "BuyingScene")
+        {
+            myMAXHP_num = (int)DontDestroyOnLoadcs.myMAXHP;
+            myMAXMP_num = (int)DontDestroyOnLoadcs.myMAXMP;
+            myHP_num = (int)DontDestroyOnLoadcs.myHP;
+            myMP_num = (int)DontDestroyOnLoadcs.myMP;
+            myDEF_num = (int)DontDestroyOnLoadcs.myDEF;
+            myATK_num = (int)DontDestroyOnLoadcs.myATK;
 
-        color_num = DontDestroyOnLoadcs.color;
-        money_num = DontDestroyOnLoadcs.money;
-        kaisuu_num = DontDestroyOnLoadcs.kaisuu;
-        boskaisuu_num = DontDestroyOnLoadcs.boskaisuu;
-        losekaisuu_num = DontDestroyOnLoadcs.losekaisuu;
+            color_num = DontDestroyOnLoadcs.color;
+            money_num = DontDestroyOnLoadcs.money;
+            kaisuu_num = DontDestroyOnLoadcs.kaisuu;
+            boskaisuu_num = DontDestroyOnLoadcs.boskaisuu;
+            losekaisuu_num = DontDestroyOnLoadcs.losekaisuu;
 
-        if (DontDestroyOnLoadcs.lose) lose_bool = 1;
-        if (DontDestroyOnLoadcs.mob) mob_bool = 1;
-        if (DontDestroyOnLoadcs.boss) boss_bool = 1;
-        if (DontDestroyOnLoadcs.Bukiya) Bukiya_bool = 1;
+            if (DontDestroyOnLoadcs.lose) lose_bool = 1;
+            if (DontDestroyOnLoadcs.mob) mob_bool = 1;
+            if (DontDestroyOnLoadcs.boss) boss_bool = 1;
+            if (DontDestroyOnLoadcs.Bukiya) Bukiya_bool = 1;
 
-        // スコアを保存
-        if(!DontDestroyOnLoadcs.mob) Save();
+            // スコアを保存
+            if (!DontDestroyOnLoadcs.mob) Save();
+        }
+
+        if (SceneManager.GetActiveScene().name == "ResultScene") DontDestroyOnLoadcs.boskaisuu = 0;
     }
 
     void Save()
@@ -100,6 +91,31 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("BOSSBOOL", boss_bool);
         PlayerPrefs.SetInt("BUKIYABOOL", Bukiya_bool);
         PlayerPrefs.Save();
+    }
+
+    public void LoadButton()
+    {
+        //ロード
+        myMAXHP_num = PlayerPrefs.GetInt("MYMAXHP");
+        myMAXMP_num = PlayerPrefs.GetInt("MYMAXMP");
+        color_num = PlayerPrefs.GetInt("COLOR");
+
+        myHP_num = PlayerPrefs.GetInt("MYHP");
+        myMP_num = PlayerPrefs.GetInt("MYMP");
+        myDEF_num = PlayerPrefs.GetInt("MYDEF");
+        myATK_num = PlayerPrefs.GetInt("MYATK");
+
+        money_num = PlayerPrefs.GetInt("MONEY");
+        kaisuu_num = PlayerPrefs.GetInt("KAISUU");
+        boskaisuu_num = PlayerPrefs.GetInt("BOSKAISUU");
+        losekaisuu_num = PlayerPrefs.GetInt("LOSEKAISUU");
+        lose_bool = PlayerPrefs.GetInt("LOSEBOOL");
+        mob_bool = PlayerPrefs.GetInt("MOBBOOL");
+        boss_bool = PlayerPrefs.GetInt("BOSSBOOL");
+        Bukiya_bool = PlayerPrefs.GetInt("BUKIYABOOL");
+        Debug.Log(money_num); //後で消す
+
+        dontDestroyOnLoadcs.LoadButton();
     }
 
     // Update is called once per frame

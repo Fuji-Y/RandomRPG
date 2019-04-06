@@ -29,11 +29,14 @@ public class BattleManager : MonoBehaviour
         {
             Destroy(GameObject.Find("ZolrikMercenary"));
             enemyControllerAS = GameObject.Find("ZolrikPrefab").GetComponent<EnemyControllerAS>();
+            DontDestroyOnLoadcs.kaisuu += 1;
         }
         if (DontDestroyOnLoadcs.boss)
         {
             Destroy(GameObject.Find("ZolrikPrefab"));
             enemyControllerAS = GameObject.Find("ZolrikMercenary").GetComponent<EnemyControllerAS>();
+            DontDestroyOnLoadcs.kaisuu += 1;
+            DontDestroyOnLoadcs.boskaisuu += 1; 
         }
         unityChanControllerAS = GameObject.Find("unitychan").GetComponent<UnityChanControllerAS>();
         this.eneHPMPText = GameObject.Find("EneHPMPText");
@@ -101,6 +104,6 @@ public class BattleManager : MonoBehaviour
         }
 
         if (DontDestroyOnLoadcs.boskaisuu < 3) SceneManager.LoadScene("GameScene");
-        if (DontDestroyOnLoadcs.boskaisuu == 3) SceneManager.LoadScene("ResultScene");
+        if (DontDestroyOnLoadcs.boskaisuu >= 3) SceneManager.LoadScene("ResultScene");
     }
 }
