@@ -18,7 +18,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     public static double myATK;
 
     //持っているお金
-    public static int money;
+    public static int money = 100;
 
     //戦闘何回目か
     public static int kaisuu;
@@ -53,7 +53,6 @@ public class DontDestroyOnLoadcs : MonoBehaviour
         myMP = 30;
         myDEF = 0;
         myATK = 100;
-        money = 100;
         kaisuu = 0;
         history = 0;
         losekaisuu = 0;
@@ -61,6 +60,7 @@ public class DontDestroyOnLoadcs : MonoBehaviour
         mob = false;
         boss = false;
         Bukiya = false;
+        Debug.Log("代入済み");
     }
 
     public void LoadButton()
@@ -86,6 +86,9 @@ public class DontDestroyOnLoadcs : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Return))
+        {
+            StartButton();
+        }
     }
 }

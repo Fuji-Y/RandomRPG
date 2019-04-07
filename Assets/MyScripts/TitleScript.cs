@@ -18,14 +18,14 @@ public class TitleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKey(KeyCode.KeypadEnter) || this.isButtonDown))
+        if (Input.GetKey(KeyCode.Return) || this.isButtonDown)
         {
             DontDestroyOnLoadcs.Load = false;
             Debug.Log("StartButton");　//後で消す
             SceneManager.LoadScene("GameScene");
         }
 
-        if ((Input.GetKey(KeyCode.Space) || this.isLoadButtonDown))
+        if (Input.GetKey(KeyCode.Space) || this.isLoadButtonDown)
         {
             DontDestroyOnLoadcs.Load = true;
             Debug.Log("LoadButton");　//後で消す
