@@ -121,8 +121,10 @@ public class BSController : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             } else if (DontDestroyOnLoadcs.money < 100)
             {
+                Debug.Log("125行目");
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
+
             if (DontDestroyOnLoadcs.color >= 1)
             {
                 bstext.GetComponent<Text>().text = "すでに装備を持っています\nnを押すと戻ります";
@@ -143,6 +145,7 @@ public class BSController : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             }else if (DontDestroyOnLoadcs.money < 500)
             {
+                Debug.Log("148行目");
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
 
@@ -166,6 +169,7 @@ public class BSController : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             }else if (DontDestroyOnLoadcs.money < 2500)
             {
+                Debug.Log("172行目");
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
 
@@ -189,6 +193,7 @@ public class BSController : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             }else if (DontDestroyOnLoadcs.money < 12500)
             {
+                Debug.Log("196行目");
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
 
