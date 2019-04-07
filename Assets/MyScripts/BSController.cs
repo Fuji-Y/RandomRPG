@@ -119,8 +119,7 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.color = 1;
                 //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
-            }
-            if (DontDestroyOnLoadcs.money < 100)
+            } else if (DontDestroyOnLoadcs.money < 100)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
@@ -132,7 +131,7 @@ public class BSController : MonoBehaviour
 
         if (count == 2 && (Input.GetKeyDown(KeyCode.Y) || buttonControllerBS2.isYButtonDown))
         {
-            if (DontDestroyOnLoadcs.money >= 500)
+            if (DontDestroyOnLoadcs.money >= 500 && DontDestroyOnLoadcs.color < 2)
             {
                 DontDestroyOnLoadcs.money -= 500;
                 DontDestroyOnLoadcs.myMAXHP *= 1.4;
@@ -142,11 +141,11 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.color = 2;
                 //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
-            }
-            if (DontDestroyOnLoadcs.money < 500)
+            }else if (DontDestroyOnLoadcs.money < 500)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
+
             if (DontDestroyOnLoadcs.color >= 2)
             {
                 bstext.GetComponent<Text>().text = "すでに装備を持っています\nnを押すと戻ります";
@@ -155,7 +154,7 @@ public class BSController : MonoBehaviour
 
         if (count == 3 && (Input.GetKeyDown(KeyCode.Y) || buttonControllerBS2.isYButtonDown))
         {
-            if (DontDestroyOnLoadcs.money >= 2500)
+            if (DontDestroyOnLoadcs.money >= 2500 && DontDestroyOnLoadcs.color < 3)
             {
                 DontDestroyOnLoadcs.money -= 2500;
                 DontDestroyOnLoadcs.myMAXHP *= 1.7;
@@ -165,11 +164,11 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.color = 3;
                 //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
-            }
-            if (DontDestroyOnLoadcs.money < 2500)
+            }else if (DontDestroyOnLoadcs.money < 2500)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
+
             if (DontDestroyOnLoadcs.color >= 3)
             {
                 bstext.GetComponent<Text>().text = "すでに装備を持っています\nnを押すと戻ります";
@@ -178,7 +177,7 @@ public class BSController : MonoBehaviour
 
         if (count == 4 && (Input.GetKeyDown(KeyCode.Y) || buttonControllerBS2.isYButtonDown))
         {
-            if (DontDestroyOnLoadcs.money >= 12500)
+            if (DontDestroyOnLoadcs.money >= 12500 && DontDestroyOnLoadcs.color < 4)
             {
                 DontDestroyOnLoadcs.money -= 12500;
                 DontDestroyOnLoadcs.myMAXHP *= 2.2;
@@ -188,11 +187,11 @@ public class BSController : MonoBehaviour
                 DontDestroyOnLoadcs.color = 4;
                 //DontDestroyOnLoadcs.myMP = DontDestroyOnLoadcs.myMAXMP;
                 SceneManager.LoadScene("GameScene");
-            }
-            if (DontDestroyOnLoadcs.money < 12500)
+            }else if (DontDestroyOnLoadcs.money < 12500)
             {
                 bstext.GetComponent<Text>().text = "お金が足りません\nnを押すと戻ります";
             }
+
             if (DontDestroyOnLoadcs.color == 4)
             {
                 bstext.GetComponent<Text>().text = "すでに装備を持っています\nnを押すと戻ります";
